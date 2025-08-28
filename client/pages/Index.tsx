@@ -180,78 +180,6 @@ export default function Index() {
     },
   ];
 
-  // const projects = [
-  //   {
-  //     title: "Fantasy Sports Platform",
-  //     description:
-  //       "Led product development for comprehensive fantasy sports platform with multiple game formats including Cricket, Football, and Kabaddi.",
-  //     tech: [
-  //       "Product Strategy",
-  //       "User Research",
-  //       "Data Analytics",
-  //       "Mobile Apps",
-  //     ],
-  //     impact: "20% conversion increase, Scaled DAU significantly",
-  //     image: "/placeholder.svg",
-  //     link: "#",
-  //   },
-  //   {
-  //     title: "Real Money Gaming Suite",
-  //     description:
-  //       "End-to-end product lifecycle management for RMG platforms including Rummy and other card games with enhanced user experience.",
-  //     tech: [
-  //       "Product Management",
-  //       "UX Optimization",
-  //       "Payment Systems",
-  //       "KYC Integration",
-  //     ],
-  //     impact: "Enhanced user retention and monetization",
-  //     image: "/placeholder.svg",
-  //     link: "#",
-  //   },
-  //   {
-  //     title: "User Onboarding & Verification",
-  //     description:
-  //       "Optimized core funnels including user onboarding, KYC verification, wallet management, and payment processing for seamless user experience.",
-  //     tech: [
-  //       "Funnel Optimization",
-  //       "User Journey",
-  //       "Data Analysis",
-  //       "A/B Testing",
-  //     ],
-  //     impact: "Improved conversion rates and user satisfaction",
-  //     image: "/placeholder.svg",
-  //     link: "#",
-  //   },
-  // ];
-
-  // const testimonials = [
-  //   {
-  //     name: "Development Team Lead",
-  //     role: "Senior Engineer",
-  //     company: "MyTeam11",
-  //     content:
-  //       "Shubham's strategic vision and execution excellence transformed our product roadmap. His ability to drive cross-functional collaboration is exceptional.",
-  //     avatar: "/placeholder.svg",
-  //   },
-  //   {
-  //     name: "Product Designer",
-  //     role: "UX Lead",
-  //     company: "OneVerse",
-  //     content:
-  //       "Working with Shubham was incredible. His ability to balance user needs with business objectives and data-driven insights is unmatched in the gaming industry.",
-  //     avatar: "/placeholder.svg",
-  //   },
-  //   {
-  //     name: "Analytics Manager",
-  //     role: "Data Science Lead",
-  //     company: "MyTeam11",
-  //     content:
-  //       "Shubham's data-driven approach and innovative thinking helped us achieve 20% conversion improvement and scale our user base significantly. Truly exceptional product leadership.",
-  //     avatar: "/placeholder.svg",
-  //   },
-  // ];
-
   return (
     <div className="min-h-screen bg-dark-900 text-foreground overflow-hidden">
       {/* Animated Background Grid */}
@@ -283,7 +211,7 @@ export default function Index() {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               whileHover={{ scale: 1.1, rotate: 5 }}
-              className="text-2xl font-orbitron font-bold text-neon-blue cursor-pointer"
+              className="text-2xl md:text-3xl font-orbitron font-bold text-neon-blue cursor-pointer"
               onClick={() => {
                 const heroSection = document.getElementById("hero");
                 if (heroSection) {
@@ -304,7 +232,11 @@ export default function Index() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="text-sm font-exo hover:text-neon-blue transition-colors duration-300 hover:text-glow"
+                    className={`text-md font-exo transition-colors duration-300 hover:text-neon-blue hover:text-glow ${
+                      activeSection === item.toLowerCase()
+                        ? "text-neon-blue font-bold underline"
+                        : "text-white/80"
+                    }`}
                     onClick={() => setActiveSection(item.toLowerCase())}
                   >
                     {item}
@@ -323,7 +255,7 @@ export default function Index() {
                   initial={false}
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className="text-neon-blue text-3xl"
+                  className="text-neon-blue text-4xl md:text-5xl" // increased size
                 >
                   {isOpen ? "✖" : "☰"}
                 </motion.div>
@@ -350,7 +282,11 @@ export default function Index() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="text-lg font-exo text-neon-blue hover:text-white transition-colors"
+                    className={`text-lg font-exo transition-colors duration-300 hover:text-white ${
+                      activeSection === item.toLowerCase()
+                        ? "text-neon-blue font-bold underline"
+                        : "text-neon-blue"
+                    }`}
                     onClick={() => {
                       setActiveSection(item.toLowerCase());
                       setIsOpen(false);
@@ -514,10 +450,8 @@ export default function Index() {
             className="max-w-6xl mx-auto"
           >
             {/* Section Heading */}
-            <h2 className="text-center text-4xl md:text-5xl font-orbitron font-extrabold mb-12">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 animate-gradient">
-                About Me
-              </span>
+            <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-center mb-12">
+              <span className="text-neon-cyan">About</span> Me
             </h2>
 
             {/* Grid Layout */}
@@ -756,10 +690,8 @@ export default function Index() {
         className="relative py-20 bg-dark-900 overflow-hidden"
       >
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 animate-gradient">
-              Skills
-            </span>
+          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-center mb-12">
+            <span className="text-neon-cyan">Core</span> Skills
           </h2>
           <p className="text-gray-400 mt-3 text-base max-w-xl mx-auto">
             Tools & technologies I work with
@@ -774,11 +706,11 @@ export default function Index() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
               whileHover={{ scale: 1.1 }}
-              className="px-6 py-3 text-sm rounded-xl border border-pink-500/40 
-          text-pink-300 font-exo font-medium 
-          bg-gradient-to-r from-dark-800 to-dark-700 hover:from-dark-700 hover:to-dark-600 
-          shadow-[0_0_15px_rgba(236,72,153,0.25)] hover:shadow-[0_0_25px_rgba(236,72,153,0.6)] 
-          cursor-pointer transition-all duration-300"
+              className="px-6 py-3 text-sm rounded-xl border border-indigo-400/40 
+      text-cyan-300 font-exo font-medium 
+      bg-gradient-to-r from-dark-800 to-dark-700 hover:from-dark-700 hover:to-dark-600 
+      shadow-[0_0_15px_rgba(79,70,229,0.25)] hover:shadow-[0_0_25px_rgba(79,70,229,0.6)] 
+      cursor-pointer transition-all duration-300"
             >
               {skill}
             </motion.div>
