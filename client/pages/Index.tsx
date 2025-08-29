@@ -15,6 +15,7 @@ import {
   User,
   MessageSquare,
   Phone,
+  MessageCircle,
 } from "lucide-react";
 import emailjs from "emailjs-com";
 import { useRef } from "react";
@@ -402,7 +403,7 @@ export default function Index() {
                 href="#contact" // this will scroll to your Contact Form section
                 className="p-3 rounded-full border border-neon-blue/50 text-neon-blue hover:bg-neon-blue hover:text-dark-900 transition-all duration-300 hover:animate-glow-pulse"
               >
-                <Phone className="w-6 h-6" />{" "}
+                <MessageCircle className="w-6 h-6" />{" "}
                 {/* Replace with icon of your choice */}
               </a>
             </motion.div>
@@ -719,19 +720,21 @@ export default function Index() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-dark-800/50">
-        <div className="container mx-auto px-6">
+      <section id="contact" className="py-16 sm:py-20 bg-dark-800/50">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-2xl mx-auto text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-8">
+            {/* Title */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-orbitron font-bold mb-6 sm:mb-8 leading-snug">
               <span className="text-neon-cyan">GET</span> IN TOUCH
             </h2>
 
-            <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
+            {/* Subtext */}
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-12 leading-relaxed px-2 sm:px-0">
               Ready to collaborate on the next breakthrough product? Let's
               connect and create something extraordinary together.
             </p>
@@ -743,42 +746,50 @@ export default function Index() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="space-y-6"
+              className="space-y-5 sm:space-y-6 text-left"
             >
-              <div className="grid md:grid-cols-2 gap-6">
+              {/* Name + Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                 <input
                   type="text"
                   name="from_name"
                   placeholder="Name"
                   required
-                  className="w-full px-4 py-3 bg-dark-700 border border-neon-blue/30 rounded-lg focus:border-neon-blue focus:outline-none transition-colors duration-300 font-roboto"
+                  className="w-full px-4 py-3 bg-dark-700 border border-neon-blue/30 rounded-lg 
+                       focus:border-neon-blue focus:outline-none transition-colors duration-300 font-roboto"
                 />
                 <input
                   type="email"
                   name="from_email"
                   placeholder="Email"
                   required
-                  className="w-full px-4 py-3 bg-dark-700 border border-neon-blue/30 rounded-lg focus:border-neon-blue focus:outline-none transition-colors duration-300 font-roboto"
+                  className="w-full px-4 py-3 bg-dark-700 border border-neon-blue/30 rounded-lg 
+                       focus:border-neon-blue focus:outline-none transition-colors duration-300 font-roboto"
                 />
               </div>
 
+              {/* Subject */}
               <input
                 type="text"
                 name="subject"
                 placeholder="Subject"
                 required
-                className="w-full px-4 py-3 bg-dark-700 border border-neon-blue/30 rounded-lg focus:border-neon-blue focus:outline-none transition-colors duration-300 font-roboto"
+                className="w-full px-4 py-3 bg-dark-700 border border-neon-blue/30 rounded-lg 
+                     focus:border-neon-blue focus:outline-none transition-colors duration-300 font-roboto"
               />
 
+              {/* Message */}
               <textarea
                 name="message"
                 placeholder="Message"
                 rows={6}
                 required
-                className="w-full px-4 py-3 bg-dark-700 border border-neon-blue/30 rounded-lg focus:border-neon-blue focus:outline-none transition-colors duration-300 font-roboto resize-none"
+                className="w-full px-4 py-3 bg-dark-700 border border-neon-blue/30 rounded-lg 
+                     focus:border-neon-blue focus:outline-none transition-colors duration-300 
+                     font-roboto resize-none"
               ></textarea>
 
-              {/* ✅ Status message (success / error) */}
+              {/* ✅ Status message */}
               {status && (
                 <p
                   className={`text-sm font-medium ${
@@ -791,11 +802,14 @@ export default function Index() {
                 </p>
               )}
 
+              {/* Submit Button */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="w-full py-4 bg-gradient-to-r from-neon-blue to-neon-cyan text-dark-900 font-exo font-bold rounded-lg neon-border hover:shadow-neon-blue transition-all duration-300 group"
+                className="w-full py-3 sm:py-4 bg-gradient-to-r from-neon-blue to-neon-cyan 
+                     text-dark-900 font-exo font-bold rounded-lg neon-border 
+                     hover:shadow-neon-blue transition-all duration-300 group"
               >
                 <span className="flex items-center justify-center gap-2">
                   <Mail className="w-5 h-5 group-hover:animate-bounce" />
@@ -804,7 +818,8 @@ export default function Index() {
               </motion.button>
             </motion.form>
 
-            <div className="flex justify-center space-x-6 mt-8">
+            {/* Social Links */}
+            <div className="flex flex-col sm:flex-row justify-center sm:space-x-6 mt-8 space-y-6 sm:space-y-0">
               {[
                 {
                   Icon: Mail,
@@ -817,7 +832,7 @@ export default function Index() {
                   href: "https://www.linkedin.com/in/avp-shubham",
                 },
                 {
-                  Icon: Download,
+                  Icon: Phone,
                   label: "+91 7791070904",
                   href: "tel:+917791070904",
                 },
@@ -828,12 +843,19 @@ export default function Index() {
                   target={Icon === Linkedin ? "_blank" : "_self"}
                   rel={Icon === Linkedin ? "noopener noreferrer" : undefined}
                   whileHover={{ y: -5 }}
-                  className="flex flex-col items-center gap-2 text-neon-blue hover:text-neon-cyan transition-colors duration-300 group"
+                  className="flex flex-col items-center gap-2 text-neon-blue 
+                       hover:text-neon-cyan transition-colors duration-300 group"
                 >
-                  <div className="p-3 rounded-full border border-neon-blue/50 group-hover:border-neon-cyan group-hover:shadow-glow transition-all duration-300">
+                  <div
+                    className="p-3 rounded-full border border-neon-blue/50 
+                            group-hover:border-neon-cyan group-hover:shadow-glow 
+                            transition-all duration-300"
+                  >
                     <Icon className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono">{label}</span>
+                  <span className="text-xs sm:text-sm font-mono break-all text-center">
+                    {label}
+                  </span>
                 </motion.a>
               ))}
             </div>
