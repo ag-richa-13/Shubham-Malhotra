@@ -26,11 +26,32 @@ import Profile from "../Assets/Profile.jpg";
 export default function Index() {
   const [activeSection, setActiveSection] = useState("hero");
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // ✅ For mobile menu toggle
-  const formRef = useRef(null); // ✅ EmailJS form reference
+  const [isOpen, setIsOpen] = useState(false);
+  const formRef = useRef(null);
 
   useEffect(() => {
     setIsLoaded(true);
+  }, []);
+
+  // ✅ Auto Update Active Section on Scroll
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }, // 60% of section should be visible to activate
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+
+    return () => {
+      sections.forEach((sec) => observer.unobserve(sec));
+    };
   }, []);
 
   // ✅ EmailJS Handler
@@ -39,10 +60,10 @@ export default function Index() {
 
     emailjs
       .sendForm(
-        "service_hu09ikk", // 🔹 replace with your EmailJS Service ID
-        "template_ekm7wdw", // 🔹 replace with your EmailJS Template ID
+        "service_hu09ikk",
+        "template_ekm7wdw",
         formRef.current,
-        "XE28dHaX691yzgys3", // 🔹 replace with your EmailJS Public Key
+        "XE28dHaX691yzgys3",
       )
       .then(
         (result) => {
